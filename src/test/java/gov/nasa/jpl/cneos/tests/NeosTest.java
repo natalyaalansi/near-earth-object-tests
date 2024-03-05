@@ -9,6 +9,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import static io.qameta.allure.Allure.step;
+
+@Tag("neos")
 public class NeosTest extends TestBase {
 
     NeosPage neosPage = new NeosPage();
@@ -21,10 +24,16 @@ public class NeosTest extends TestBase {
             @Tag("MINOR"),
     })
     void headerNavigationContainsMenuAndBreadcrumbs() {
-        neosPage.openPage()
-                .checkLeftMenu()
-                .checkRightMenu()
-                .checkBreadcrumbs();
+
+        step("Open NEO Earth Close Approaches page", () -> {
+            neosPage.openPage();
+        });
+
+        step("Check Left Menu Items, Right Menu Items, Breadcrumbs", () -> {
+            neosPage.checkLeftMenu()
+                    .checkRightMenu()
+                    .checkBreadcrumbs();
+        });
     }
 
     @Test
@@ -35,12 +44,24 @@ public class NeosTest extends TestBase {
             @Tag("MAJOR"),
     })
     void pageContentHasSpecificBlocks() {
-        neosPage.openPage()
-                .checkHeading()
-                .checkSubheading()
-                .checkVideoLink()
-                .checkTableSettingsName()
-                .checkTableGeneration();
+
+        step("Open NEO Earth Close Approaches page", () -> {
+            neosPage.openPage();
+        });
+
+        step("Verify Heading, Subheading", () -> {
+            neosPage.checkHeading()
+                    .checkSubheading();
+        });
+
+        step("Check for a link to a brief video tutorial", () -> {
+            neosPage.checkVideoLink();
+        });
+
+        step("Verify the presence of the header of the filter table and data table", () -> {
+            neosPage.checkTableSettingsName();
+            neosPage.checkTableGeneration();
+        });
     }
 
     @Test
@@ -51,11 +72,20 @@ public class NeosTest extends TestBase {
             @Tag("LOW"),
     })
     void updateButtonIsDisabledForDefaultFilters() {
-        neosPage.openPage()
-                .checkDefaultDateRangeFilter()
-                .checkDefaultHMaxFilter()
-                .checkDefaultDistMaxFilter()
-                .checkDisabledUpdateButton();
+
+        step("Open NEO Earth Close Approaches page", () -> {
+            neosPage.openPage();
+        });
+
+        step("Verify filter values are displayed by default", () -> {
+            neosPage.checkDefaultDateRangeFilter()
+                    .checkDefaultHMaxFilter()
+                    .checkDefaultDistMaxFilter();
+        });
+
+        step("Check Update Data button is disabled", () -> {
+            neosPage.checkDisabledUpdateButton();
+        });
     }
 
     @Test
@@ -67,14 +97,25 @@ public class NeosTest extends TestBase {
     })
     void defaultFiltersAreDisplayedAfterResettingSettings() {
 
-        neosPage.openPage()
-                .setDateRange(TestData.DateRange.recentPast)
-                .setDistMax(TestData.DistMax.le1Ld)
-                .setHMax(TestData.HMax.le22)
-                .applyDefaultFilters()
-                .checkDefaultDateRangeFilter()
-                .checkDefaultHMaxFilter()
-                .checkDefaultDistMaxFilter();
+        step("Open NEO Earth Close Approaches page", () -> {
+            neosPage.openPage();
+        });
+
+        step("Set specific filters", () -> {
+            neosPage.setDateRange(TestData.DateRange.recentPast)
+                    .setDistMax(TestData.DistMax.le1Ld)
+                    .setHMax(TestData.HMax.le22);
+        });
+
+        step("Revert settings", () -> {
+            neosPage.applyDefaultFilters();
+        });
+
+        step("Verify filter values are displayed by default after resetting the filters", () -> {
+            neosPage.checkDefaultDateRangeFilter()
+                    .checkDefaultHMaxFilter()
+                    .checkDefaultDistMaxFilter();
+        });
     }
 
     @Test
@@ -85,12 +126,24 @@ public class NeosTest extends TestBase {
             @Tag("MAJOR"),
     })
     void tableContainsResultsForSpecificFilters() {
-        neosPage.openPage()
-                .setDateRange(TestData.DateRange.recentPast)
-                .setDistMax(TestData.DistMax.le5Ld)
-                .setHMax(TestData.HMax.le26)
-                .updateData()
-                .checkTableContainsResults();
+
+        step("Open NEO Earth Close Approaches page", () -> {
+            neosPage.openPage();
+        });
+
+        step("Set specific filters", () -> {
+            neosPage.setDateRange(TestData.DateRange.recentPast)
+                    .setDistMax(TestData.DistMax.le5Ld)
+                    .setHMax(TestData.HMax.le26);
+        });
+
+        step("Click on Update Data button", () -> {
+            neosPage.updateData();
+        });
+
+        step("Check the table contains data", () -> {
+            neosPage.checkTableContainsResults();
+        });
     }
 
     @Test
@@ -101,12 +154,24 @@ public class NeosTest extends TestBase {
             @Tag("MAJOR"),
     })
     void tableDoesNotContainResultsForSpecificFilters() {
-        neosPage.openPage()
-                .setDateRange(TestData.DateRange.recentPast)
-                .setDistMax(TestData.DistMax.le1Ld)
-                .setHMax(TestData.HMax.le26)
-                .updateData()
-                .checkTableContainsNoResult();
+
+        step("Open NEO Earth Close Approaches page", () -> {
+            neosPage.openPage();
+        });
+
+        step("Set specific filters", () -> {
+            neosPage.setDateRange(TestData.DateRange.recentPast)
+                    .setDistMax(TestData.DistMax.le1Ld)
+                    .setHMax(TestData.HMax.le26);
+        });
+
+        step("Click on Update Data button", () -> {
+            neosPage.updateData();
+        });
+
+        step("Check the table does not contain data", () -> {
+            neosPage.checkTableContainsNoResult();
+        });
     }
 
     @CsvSource(value = {
@@ -124,10 +189,19 @@ public class NeosTest extends TestBase {
             @Tag("MAJOR"),
     })
     void columnNamesChangeWhenUnitsChange(String distanceUnit, String velocityUnit) {
-        neosPage.openPage()
-                .setUnitToDistance(distanceUnit)
-                .setUnitToVelocity(velocityUnit)
-                .checkDistanceColumnsContainChangedUnits(distanceUnit)
-                .checkVelocityColumnsContainChangedUnits(velocityUnit);
+
+        step("Open NEO Earth Close Approaches page", () -> {
+            neosPage.openPage();
+        });
+
+        step("Set units to Distance, Velocity", () -> {
+            neosPage.setUnitToDistance(distanceUnit)
+                    .setUnitToVelocity(velocityUnit);
+        });
+
+        step("Check that set units are displayed in Distance, Velocity table headers", () -> {
+            neosPage.checkDistanceColumnsContainChangedUnits(distanceUnit)
+                    .checkVelocityColumnsContainChangedUnits(velocityUnit);
+        });
     }
 }
