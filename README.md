@@ -59,9 +59,9 @@ clean neos_tests
 <a id="jira"></a>
 ## <img alt="Jira" src="images/logo/Jira.svg" width="40" height="40"/> Jira integration
 <img title="Jira integration" src="images/attachment/jira.png"> 
-z
+
 <a id="telegram"></a>
-## <img alt="Telegram" src="images/logo/Telegram.svg" width="40" height="40"/> Telegram notifications via bot 
+## <img alt="Telegram" src="images/logo/Telegram.svg" width="40" height="40"/>Telegram notifications via bot 
 <img title="Telegram notifications via bot" src="images/attachment/telegram.png">  
 
 <a id="video"></a>
