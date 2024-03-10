@@ -11,18 +11,18 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static io.qameta.allure.Allure.step;
 
-@Tag("neos")
+@Tags({
+        @Tag("neos"),
+        @Tag("web"),
+        @Tag("sanity"),
+})
 public class NeosTest extends TestBase {
 
     NeosPage neosPage = new NeosPage();
 
     @Test
     @DisplayName("Header navigation contains menu and breadcrumbs")
-    @Tags({
-            @Tag("WEB"),
-            @Tag("SANITY"),
-            @Tag("MINOR"),
-    })
+    @Tag("minor")
     void headerNavigationContainsMenuAndBreadcrumbs() {
 
         step("Open NEO Earth Close Approaches page", () -> {
@@ -38,11 +38,7 @@ public class NeosTest extends TestBase {
 
     @Test
     @DisplayName("Page content consists of required blocks")
-    @Tags({
-            @Tag("WEB"),
-            @Tag("SANITY"),
-            @Tag("MAJOR"),
-    })
+    @Tag("major")
     void pageContentHasSpecificBlocks() {
 
         step("Open NEO Earth Close Approaches page", () -> {
@@ -66,11 +62,7 @@ public class NeosTest extends TestBase {
 
     @Test
     @DisplayName("Updating the results table according to default filters is disabled")
-    @Tags({
-            @Tag("WEB"),
-            @Tag("SANITY"),
-            @Tag("LOW"),
-    })
+    @Tag("low")
     void updateButtonIsDisabledForDefaultFilters() {
 
         step("Open NEO Earth Close Approaches page", () -> {
@@ -90,11 +82,7 @@ public class NeosTest extends TestBase {
 
     @Test
     @DisplayName("The default filters are displayed, after resetting the filters")
-    @Tags({
-            @Tag("WEB"),
-            @Tag("SANITY"),
-            @Tag("MINOR"),
-    })
+    @Tag("minor")
     void defaultFiltersAreDisplayedAfterResettingSettings() {
 
         step("Open NEO Earth Close Approaches page", () -> {
@@ -120,11 +108,7 @@ public class NeosTest extends TestBase {
 
     @Test
     @DisplayName("The table contains the results when specific filters are applied")
-    @Tags({
-            @Tag("WEB"),
-            @Tag("SANITY"),
-            @Tag("MAJOR"),
-    })
+    @Tag("major")
     void tableContainsResultsForSpecificFilters() {
 
         step("Open NEO Earth Close Approaches page", () -> {
@@ -148,11 +132,7 @@ public class NeosTest extends TestBase {
 
     @Test
     @DisplayName("The table does not contain the results when specific filters are applied")
-    @Tags({
-            @Tag("WEB"),
-            @Tag("SANITY"),
-            @Tag("MAJOR"),
-    })
+    @Tag("major")
     void tableDoesNotContainResultsForSpecificFilters() {
 
         step("Open NEO Earth Close Approaches page", () -> {
@@ -183,11 +163,7 @@ public class NeosTest extends TestBase {
     }, delimiter = '|')
     @ParameterizedTest(name = "Distance and Velocity header columns contain modified {0} and {1} units respectively")
     @DisplayName("Distance and Velocity header columns contain modified units respectively")
-    @Tags({
-            @Tag("WEB"),
-            @Tag("SANITY"),
-            @Tag("MAJOR"),
-    })
+    @Tag("major")
     void columnNamesChangeWhenUnitsChange(String distanceUnit, String velocityUnit) {
 
         step("Open NEO Earth Close Approaches page", () -> {

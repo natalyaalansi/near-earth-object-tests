@@ -13,7 +13,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class NeosPage {
 
-    private SelenideElement leftMenu = $(".name"),
+    private SelenideElement leftMenuItem = $(".name"),
             heading = $("h1"),
             subheading = $("h3"), video = $("h4 a"),
             briefTutorial = $("h4 a"),
@@ -32,7 +32,7 @@ public class NeosPage {
             vInfinity = $("#closeApproachTable thead tr th:nth-child(7)");
 
 
-    private ElementsCollection rightMenu = $$(".right li[class*='has-dropdown']"),
+    private ElementsCollection rightMenuItems = $$(".right li[class*='has-dropdown']"),
             breadcrumbs = $$(".breadcrumbs li"),
             resulTableRows = $$("#closeApproachTable tbody tr");
 
@@ -46,12 +46,12 @@ public class NeosPage {
     }
 
     public NeosPage checkLeftMenu() {
-        leftMenu.shouldHave(text("Home"));
+        leftMenuItem.shouldHave(text("Home"));
         return this;
     }
 
     public NeosPage checkRightMenu() {
-        rightMenu.shouldHave(texts("About", "Orbits", "Close Approaches", "Impact Risk", "Planetary Defense", "Discovery Statistics", "Tools", "Extras"));
+        rightMenuItems.shouldHave(texts("About", "Orbits", "Close Approaches", "Impact Risk", "Planetary Defense", "Discovery Statistics", "Tools", "Extras"));
         return this;
     }
 
