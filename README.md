@@ -28,24 +28,37 @@ The Center for Near-Earth Object Studies (CNEOS) computes high precision orbits 
 - The default filters are displayed, after resetting the filters
 - The table contains the results when specific filters are applied
 - The table does not contain the results when specific filters are applied
-- Distance and Velocity header columns contain modified units respectively
+- Distance and Velocity header columns contain modified units respectively (Parameterized using the @CsvSource annotation)
 
 <a id="running"></a>
 ## Running Autotests
 
 ### Local run
 ```
-gradle clean neos_tests
+gradle clean test -Denv=local 
 ```
 
 ### Remote Jenkins run
 ```
-clean neos_tests
--Dbrowser=${BROWSER}
--Dversion=${BROWSER_VERSION}
--DwindowSize=${BROWSER_SIZE}
--DremoteUrl=${REMOTE_URL}
+gradle clean test -Denv=remote 
 ```
+
+#### Properties are retrieved from the corresponding configuration file (depending on the value of `env`):
+
+```
+./resources/config/${env}.properties
+```
+
+`local.properties` file
+<p  align="left">
+<img src="images/attachment/local.png">
+</p>
+
+`remote.properties` file
+<p  align="left">
+<img src="images/attachment/remote.png">
+</p>
+
 <a id="report"></a>
 ## <img alt="Allure Reports" src="images/logo/Allure.svg" width="40" height="40"/> Allure Report
 <img title="Allure Overview" src="images/attachment/allureOverview.png"> 
