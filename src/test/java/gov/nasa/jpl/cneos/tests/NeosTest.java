@@ -12,7 +12,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static io.qameta.allure.Allure.step;
 
 @Tags({
-        @Tag("neos"),
         @Tag("web"),
         @Tag("sanity"),
 })
@@ -90,9 +89,9 @@ public class NeosTest extends TestBase {
         });
 
         step("Set specific filters", () -> {
-            neosPage.setDateRange(TestData.DateRange.recentPast)
-                    .setDistMax(TestData.DistMax.le1Ld)
-                    .setHMax(TestData.HMax.le22);
+            neosPage.setDateRange(TestData.DateRange.RECENT_PAST)
+                    .setDistMax(TestData.DistMax.LE1LD)
+                    .setHMax(TestData.HMax.LE22);
         });
 
         step("Revert settings", () -> {
@@ -116,9 +115,9 @@ public class NeosTest extends TestBase {
         });
 
         step("Set specific filters", () -> {
-            neosPage.setDateRange(TestData.DateRange.recentPast)
-                    .setDistMax(TestData.DistMax.le5Ld)
-                    .setHMax(TestData.HMax.le26);
+            neosPage.setDateRange(TestData.DateRange.RECENT_PAST)
+                    .setDistMax(TestData.DistMax.LE5LD)
+                    .setHMax(TestData.HMax.LE26);
         });
 
         step("Click on Update Data button", () -> {
@@ -140,9 +139,9 @@ public class NeosTest extends TestBase {
         });
 
         step("Set specific filters", () -> {
-            neosPage.setDateRange(TestData.DateRange.recentPast)
-                    .setDistMax(TestData.DistMax.le1Ld)
-                    .setHMax(TestData.HMax.le26);
+            neosPage.setDateRange(TestData.DateRange.RECENT_PAST)
+                    .setDistMax(TestData.DistMax.LE1LD)
+                    .setHMax(TestData.HMax.LE26);
         });
 
         step("Click on Update Data button", () -> {

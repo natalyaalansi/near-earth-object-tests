@@ -56,9 +56,3 @@ tasks.withType(Test) {
         }
     }
 }
-
-task neos_tests(type: Test) {
-    useJUnitPlatform {
-        includeTags("neos")
-    }
-}

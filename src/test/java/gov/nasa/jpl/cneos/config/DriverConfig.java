@@ -20,5 +20,4 @@ public interface DriverConfig extends Config {
 
     @Key("browserRemoteUrl")
     String browserRemoteUrl();
-
 }
