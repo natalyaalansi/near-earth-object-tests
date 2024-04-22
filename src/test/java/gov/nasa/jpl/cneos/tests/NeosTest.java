@@ -19,6 +19,11 @@ public class NeosTest extends TestBase {
 
     NeosPage neosPage = new NeosPage();
 
+    String noDataText = "No data match specified Table Settings",
+    defaultNearFuture = "Near future (within 60 days)",
+    defaultHLimit = "no H limit",
+    defaultNominalDist = "Nominal dist. <= 0.05au";
+
     @Test
     @DisplayName("Header navigation contains menu and breadcrumbs")
     @Tag("minor")
@@ -28,10 +33,10 @@ public class NeosTest extends TestBase {
             neosPage.openPage();
         });
 
-        step("Check Left Menu Items, Right Menu Items, Breadcrumbs", () -> {
-            neosPage.checkLeftMenu()
-                    .checkRightMenu()
-                    .checkBreadcrumbs();
+        step("Check \"Home\"s, Right Menu Items, Breadcrumbs", () -> {
+            neosPage.checkLeftMenu("Home")
+                    .checkRightMenu("About", "Orbits", "Close Approaches", "Impact Risk", "Planetary Defense", "Discovery Statistics", "Tools", "Extras")
+                    .checkBreadcrumbs("Home", "Close Approaches", "Neos");
         });
     }
 
@@ -45,16 +50,16 @@ public class NeosTest extends TestBase {
         });
 
         step("Verify Heading, Subheading", () -> {
-            neosPage.checkHeading()
-                    .checkSubheading();
+            neosPage.checkHeading("NEO Earth Close Approaches")
+                    .checkSubheading("Close Approach Data");
         });
 
         step("Check for a link to a brief video tutorial", () -> {
-            neosPage.checkVideoLink();
+            neosPage.checkVideoLink("neo_ca_tutorial.html");
         });
 
         step("Verify the presence of the header of the filter table and data table", () -> {
-            neosPage.checkTableSettingsName();
+            neosPage.checkTableSettingsName("Table Settings");
             neosPage.checkTableGeneration();
         });
     }
@@ -69,9 +74,9 @@ public class NeosTest extends TestBase {
         });
 
         step("Verify filter values are displayed by default", () -> {
-            neosPage.checkDefaultDateRangeFilter()
-                    .checkDefaultHMaxFilter()
-                    .checkDefaultDistMaxFilter();
+            neosPage.checkDefaultDateRangeFilter(defaultNearFuture)
+                    .checkDefaultHMaxFilter(defaultHLimit)
+                    .checkDefaultDistMaxFilter(defaultNominalDist);
         });
 
         step("Check Update Data button is disabled", () -> {
@@ -99,9 +104,9 @@ public class NeosTest extends TestBase {
         });
 
         step("Verify filter values are displayed by default after resetting the filters", () -> {
-            neosPage.checkDefaultDateRangeFilter()
-                    .checkDefaultHMaxFilter()
-                    .checkDefaultDistMaxFilter();
+            neosPage.checkDefaultDateRangeFilter(defaultNearFuture)
+                    .checkDefaultHMaxFilter( defaultHLimit)
+                    .checkDefaultDistMaxFilter(defaultNominalDist);
         });
     }
 
@@ -125,7 +130,7 @@ public class NeosTest extends TestBase {
         });
 
         step("Check the table contains data", () -> {
-            neosPage.checkTableContainsResults();
+            neosPage.checkTableContainsResults(noDataText);
         });
     }
 
@@ -141,7 +146,7 @@ public class NeosTest extends TestBase {
         step("Set specific filters", () -> {
             neosPage.setDateRange(TestData.DateRange.RECENT_PAST)
                     .setDistMax(TestData.DistMax.LE1LD)
-                    .setHMax(TestData.HMax.LE26);
+                    .setHMax(TestData.HMax.LE24);
         });
 
         step("Click on Update Data button", () -> {
@@ -149,7 +154,7 @@ public class NeosTest extends TestBase {
         });
 
         step("Check the table does not contain data", () -> {
-            neosPage.checkTableContainsNoResult();
+            neosPage.checkTableContainsNoResult(noDataText);
         });
     }
 

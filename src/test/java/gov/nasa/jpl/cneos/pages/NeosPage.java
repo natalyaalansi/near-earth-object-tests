@@ -6,6 +6,8 @@ import gov.nasa.jpl.cneos.pages.components.DefaultFilterComponent;
 import gov.nasa.jpl.cneos.pages.components.QuantityColumnsComponent;
 import gov.nasa.jpl.cneos.pages.components.UnitToQuantityComponent;
 
+import java.util.List;
+
 import static com.codeborne.selenide.CollectionCondition.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
@@ -45,38 +47,38 @@ public class NeosPage {
         return this;
     }
 
-    public NeosPage checkLeftMenu() {
-        leftMenuItem.shouldHave(text("Home"));
+    public NeosPage checkLeftMenu(String itemText) {
+        leftMenuItem.shouldHave(text(itemText));
         return this;
     }
 
-    public NeosPage checkRightMenu() {
-        rightMenuItems.shouldHave(texts("About", "Orbits", "Close Approaches", "Impact Risk", "Planetary Defense", "Discovery Statistics", "Tools", "Extras"));
+    public NeosPage checkRightMenu(String... itemTexts) {
+        rightMenuItems.shouldHave(texts(itemTexts));
         return this;
     }
 
-    public NeosPage checkBreadcrumbs() {
-        breadcrumbs.shouldHave(texts("Home", "Close Approaches", "Neos"));
+    public NeosPage checkBreadcrumbs(String... itemTexts) {
+        breadcrumbs.shouldHave(texts(itemTexts));
         return this;
     }
 
-    public NeosPage checkHeading() {
-        heading.shouldHave(text("NEO Earth Close Approaches"));
+    public NeosPage checkHeading(String headingText) {
+        heading.shouldHave(text(headingText));
         return this;
     }
 
-    public NeosPage checkSubheading() {
-        subheading.shouldHave(text("Close Approach Data"));
+    public NeosPage checkSubheading(String subheadingText) {
+        subheading.shouldHave(text(subheadingText));
         return this;
     }
 
-    public NeosPage checkVideoLink() {
-        briefTutorial.shouldHave(href("neo_ca_tutorial.html"));
+    public NeosPage checkVideoLink(String link) {
+        briefTutorial.shouldHave(href(link));
         return this;
     }
 
-    public NeosPage checkTableSettingsName() {
-        tableFilters.shouldHave(text("Table Settings"));
+    public NeosPage checkTableSettingsName(String tableName) {
+        tableFilters.shouldHave(text(tableName));
         return this;
     }
 
@@ -85,18 +87,18 @@ public class NeosPage {
         return this;
     }
 
-    public NeosPage checkDefaultDateRangeFilter() {
-        defaultFilterComponent.checkDefaultFilter(dateRange, "Near future (within 60 days)");
+    public NeosPage checkDefaultDateRangeFilter(String defaultFilterName) {
+        defaultFilterComponent.checkDefaultFilter(dateRange, defaultFilterName);
         return this;
     }
 
-    public NeosPage checkDefaultDistMaxFilter() {
-        defaultFilterComponent.checkDefaultFilter(distMax, "Nominal dist. <= 0.05au");
+    public NeosPage checkDefaultDistMaxFilter(String defaultFilterName) {
+        defaultFilterComponent.checkDefaultFilter(distMax, defaultFilterName);
         return this;
     }
 
-    public NeosPage checkDefaultHMaxFilter() {
-        defaultFilterComponent.checkDefaultFilter(hMax, "no H limit");
+    public NeosPage checkDefaultHMaxFilter(String defaultFilterName) {
+        defaultFilterComponent.checkDefaultFilter(hMax, defaultFilterName);
         return this;
     }
 
@@ -130,15 +132,15 @@ public class NeosPage {
         return this;
     }
 
-    public NeosPage checkTableContainsResults() {
+    public NeosPage checkTableContainsResults(String noDataText) {
         resulTableRows.shouldHave(sizeGreaterThan(0));
-        resulTableRows.first().shouldNotHave(text("No data match specified Table Settings"));
+        resulTableRows.first().shouldNotHave(text(noDataText));
         return this;
     }
 
-    public NeosPage checkTableContainsNoResult() {
+    public NeosPage checkTableContainsNoResult(String noDataText) {
         resulTableRows.shouldHave(size(1));
-        resulTableRows.shouldHave(texts("No data match specified Table Settings"));
+        resulTableRows.shouldHave(texts(noDataText));
         return this;
     }
 
