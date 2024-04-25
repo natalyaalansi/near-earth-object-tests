@@ -6,8 +6,6 @@ import gov.nasa.jpl.cneos.pages.components.DefaultFilterComponent;
 import gov.nasa.jpl.cneos.pages.components.QuantityColumnsComponent;
 import gov.nasa.jpl.cneos.pages.components.UnitToQuantityComponent;
 
-import java.util.List;
-
 import static com.codeborne.selenide.CollectionCondition.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;

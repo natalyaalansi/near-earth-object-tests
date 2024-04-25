@@ -20,9 +20,9 @@ public class NeosTest extends TestBase {
     NeosPage neosPage = new NeosPage();
 
     String noDataText = "No data match specified Table Settings",
-    defaultNearFuture = "Near future (within 60 days)",
-    defaultHLimit = "no H limit",
-    defaultNominalDist = "Nominal dist. <= 0.05au";
+            defaultNearFuture = "Near future (within 60 days)",
+            defaultHLimit = "no H limit",
+            defaultNominalDist = "Nominal dist. <= 0.05au";
 
     @Test
     @DisplayName("Header navigation contains menu and breadcrumbs")
